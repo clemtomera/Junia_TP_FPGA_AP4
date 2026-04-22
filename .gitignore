@@ -1,0 +1,42 @@
+# Si vous constatez qu'un filtre est manquant pour inclure VOS fichiers importants, n'hésitez pas à éditer les filtres.
+
+# =============================
+# Ignore all
+*
+
+# =============================
+# Un-ignore the following :
+
+# Git stuff
+!.gitattributes
+!.gitignore
+!.gitkeep
+!read.me
+!readme
+!readme.md
+!*.md
+
+# Sources
+!*.v
+!*.vhd
+!*.vhld
+!*.vhdl
+!*.bdf
+
+# Modelsim
+!*.do
+!*.vho
+
+# Synthesis reports
+!*.summary
+!*.done
+
+# Screenshots / Rapports
+!*.png
+!*.jpg
+!*.jpeg
+!*.bmp
+!*.pdf
+
+# Subdirectories
+!*/
