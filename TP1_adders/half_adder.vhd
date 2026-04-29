@@ -19,6 +19,6 @@ begin
     -- Ecrire ici les instructions cocurrentes décrivant le comportement de l'entity
 	-- ex. X <= not(A);
 	-- ex. S <= not(X);
-	c <= a and b; 
-	s <= a xor b; 
+	c <= a and b;  -- retenue de a + b
+	s <= a xor b; -- somme de a + b 
 end behavioral;
