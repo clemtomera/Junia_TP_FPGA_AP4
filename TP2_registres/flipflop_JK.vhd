@@ -3,7 +3,7 @@ USE ieee.std_logic_1164.ALL;
 USE ieee.numeric_std.ALL;
 
 -- DESCRIPTION DES ENTREES/SORTIES DE L'ENTITY
-ENTITY JKflipflop IS
+ENTITY flipflop_JK IS
 	PORT (
 		-- Inputs
 		J : IN STD_LOGIC; -- J input
@@ -13,28 +13,29 @@ ENTITY JKflipflop IS
 		Q : OUT STD_LOGIC; -- Flip flop output
 		Qn : OUT STD_LOGIC -- Flip flop complemented output
 	);
-END JKflipflop;
-ARCHITECTURE behavioral OF JKflipflop IS
+END flipflop_JK;
+ARCHITECTURE behavioral OF flipflop_JK IS
 	SIGNAL Q_internal : STD_LOGIC := '0';
 BEGIN
 	PROCESS (CLK)
 	BEGIN
-		IF (CLK'event AND CLK = '1') THEN
+		IF rising_edge(CLK) THEN
 			IF (J = '0' AND K = '0') THEN
-				Q <= Q_internal; -- Pas de changement
-				Qn <= NOT(Q_internal);
+				Q_internal <= Q_internal; -- Pas de changement
 			ELSIF (J = '0' AND K = '1') THEN
-				Q <= '0'; -- 0
-				Qn <= '1';
+				Q_internal <= '0'; -- 0
 			ELSIF (J = '1' AND K = '0') THEN
-				Q <= '1'; -- 1
-				Qn <= '0';
+				Q_internal <= '1'; -- 1
 			ELSE -- J = '1' AND K = '1'
-				Q <= NOT(Q_internal); -- Inverser
-				Qn <= Q_internal;
+				Q_internal <= NOT(Q_internal); -- Inverser
 			END IF;
 		END IF;
 	END PROCESS;
+
+	-- SORTIES
+	Q  <= Q_internal;
+	Qn <= NOT Q_internal;
+
 END behavioral;
 
 
