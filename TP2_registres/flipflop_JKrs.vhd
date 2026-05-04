@@ -29,7 +29,7 @@ BEGIN
 
 		-- FONCTIONNEMENT JK
 		ELSIF (rising_edge(CLK)) THEN
-			CASE (J & K) IS
+			CASE STD_LOGIC_VECTOR'(J & K) IS
 				WHEN "00" => 
 					Q_internal <= Q_internal;
 				WHEN "01" => 
