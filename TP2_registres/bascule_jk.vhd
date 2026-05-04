@@ -15,23 +15,22 @@ ENTITY JKflipflop IS
 	);
 END JKflipflop;
 ARCHITECTURE behavioral OF JKflipflop IS
-	SIGNAL Q_internal : STD_LOGIC := '0'; -- Internal signal to hold the state of Q
+	SIGNAL Q_internal : STD_LOGIC := '0';
 BEGIN
 	PROCESS (CLK)
 	BEGIN
 		IF (CLK'event AND CLK = '1') THEN
-			-- JK Flip-Flop logic
 			IF (J = '0' AND K = '0') THEN
-				Q <= Q_internal; -- Hold state
+				Q <= Q_internal; -- Pas de changement
 				Qn <= NOT(Q_internal);
 			ELSIF (J = '0' AND K = '1') THEN
-				Q <= '0'; -- Reset
+				Q <= '0'; -- 0
 				Qn <= '1';
 			ELSIF (J = '1' AND K = '0') THEN
-				Q <= '1'; -- Set
+				Q <= '1'; -- 1
 				Qn <= '0';
 			ELSE -- J = '1' AND K = '1'
-				Q <= NOT(Q_internal); -- Toggle
+				Q <= NOT(Q_internal); -- Inverser
 				Qn <= Q_internal;
 			END IF;
 		END IF;
