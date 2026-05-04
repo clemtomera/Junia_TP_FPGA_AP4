@@ -1,0 +1,51 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+USE ieee.numeric_std.ALL;
+
+-- DESCRIPTION DES ENTREES/SORTIES DE L'ENTITY
+ENTITY JKflipflop IS
+	PORT (
+		-- Inputs
+		J : IN STD_LOGIC; -- J input
+		K : IN STD_LOGIC; -- K input
+		CLK : IN STD_LOGIC; -- Clock (rising-edge triggered)
+		-- Outputs
+		Q : OUT STD_LOGIC; -- Flip flop output
+		Qn : OUT STD_LOGIC -- Flip flop complemented output
+	);
+END JKflipflop;
+ARCHITECTURE behavioral OF JKflipflop IS
+BEGIN
+	PROCESS (CLK)
+	BEGIN
+		IF (CLK'event AND CLK = '1') THEN
+			-- JK Flip-Flop logic
+			IF (J = '0' AND K = '0') THEN
+				Q <= Q; -- Hold state
+				Qn <= Qn;
+			ELSIF (J = '0' AND K = '1') THEN
+				Q <= '0'; -- Reset
+				Qn <= '1';
+			ELSIF (J = '1' AND K = '0') THEN
+				Q <= '1'; -- Set
+				Qn <= '0';
+			ELSE -- J = '1' AND K = '1'
+				Q <= NOT(Q); -- Toggle
+				Qn <= NOT(Qn);
+			END IF;
+		END IF;
+	END PROCESS;
+END behavioral;
+
+
+-- Bascule JK Table caractéristique -- 
+
+-- | J | K | Q(t) || Q(t+1) | Qn(t+1)
+-- | 0 | 0 |   0  ||    0   | 1 
+-- | 0 | 0 |   1  ||    1   | 0 
+-- | 0 | 1 |   0  ||    0   | 1 
+-- | 0 | 1 |   1  ||    0   | 1 
+-- | 1 | 0 |   0  ||    1   | 0 
+-- | 1 | 0 |   1  ||    1   | 0 
+-- | 1 | 1 |   0  ||    1   | 0 
+-- | 1 | 1 |   1  ||    0   | 1  
