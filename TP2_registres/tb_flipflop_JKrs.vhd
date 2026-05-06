@@ -18,7 +18,6 @@ ARCHITECTURE tb OF tb_flipflop_JKrs IS
 
 BEGIN
 
-    -- Instanciation (UUT)
     UUT : ENTITY work.flipflop_JKrs
         PORT MAP (
             J    => J,
@@ -31,12 +30,15 @@ BEGIN
         );
 
     -- Générateur d'horloge (période = 10 ns)
-    CLK <= NOT CLK AFTER 5 ns;
+    clk_gen : PROCESS
+    BEGIN
+        CLK <= '0'; WAIT FOR 5 ns;
+        CLK <= '1'; WAIT FOR 5 ns;
+    END PROCESS;
 
     -- Stimuli
     stimuli : PROCESS
     BEGIN
-
         ----------------------------------------------------------------
         -- TEST RESET ASYNCHRONE
         ----------------------------------------------------------------
@@ -75,9 +77,6 @@ BEGIN
         SETn <= '0'; RSTn <= '0'; WAIT FOR 10 ns;
         SETn <= '1'; RSTn <= '1'; WAIT FOR 20 ns;
 
-        ----------------------------------------------------------------
-        -- FIN
-        ----------------------------------------------------------------
         WAIT;
 
     END PROCESS;
