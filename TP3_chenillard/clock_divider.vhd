@@ -23,14 +23,15 @@ ARCHITECTURE behavioral OF clock_divider IS
 BEGIN
 
     -- Processus : incrémentation synchrone du compteur
-    PROCESS (CLKin)
+    PROCESS (CLKin, RST)
     BEGIN
-        IF rising_edge(CLKin) THEN
-            IF RST = '0' THEN -- Reset actif à l'état bas
-                counter <= (OTHERS => '0');
-            ELSE
+        IF RST = '0' THEN -- Reset actif à l'état bas
+            counter <= (OTHERS => '0');
+        ELSE
+            IF rising_edge(CLKin) THEN
                 counter <= counter + 1;
             END IF;
+
         END IF;
     END PROCESS;
 

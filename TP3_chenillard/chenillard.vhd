@@ -22,7 +22,7 @@ BEGIN
 
     PROCESS (CLK, RST)
     BEGIN
-        IF RST = '1' THEN
+        IF RST = '0' THEN
             current_state <= s1;
         ELSIF CLK'EVENT AND CLK = '1' THEN
             current_state <= future_state;
@@ -63,8 +63,8 @@ BEGIN
                 CHEN <= "1000000111";
                 future_state <= s1;
             WHEN OTHERS =>
-                CHEN <= "0000001111";
-                future_state <= s2;
+                CHEN <= "0101010101";
+                future_state <= s1;
         END CASE;
     END PROCESS;
 END behavioral;
