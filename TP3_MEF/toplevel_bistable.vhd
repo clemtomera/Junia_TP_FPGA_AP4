@@ -18,13 +18,12 @@ BEGIN
 
     U_BISTABLE : work.bistable
         PORT MAP (
-            CLK => CLOCK_50_B6A,     -- horloge 50 MHz pour capturer les fronts
-            RST => KEY(1),       -- KEY(1) = reset (actif bas)
-            X   => NOT KEY(0),   -- KEY(0) appuyé → X='1', relâché → X='0'
+            CLK => CLOCK_50_B6A,    
+            RST => KEY(1),       
+            X   => NOT KEY(0),   
             Y   => led_state
         );
 
-    -- Toutes les LEDs vertes reçoivent le même état
     LEDG <= (OTHERS => led_state);
 
 END structural;
