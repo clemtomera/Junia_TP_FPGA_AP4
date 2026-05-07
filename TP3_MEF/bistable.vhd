@@ -15,7 +15,7 @@ END bistable;
 
 -- DESCRIPTION COMPORTEMENTALE DE L'ENTITY
 ARCHITECTURE behavioral OF bistable IS
-    TYPE state_type : STD_LOGIC(a, b, c, d);
+    TYPE state_type IS (a, b, c, d);
     SIGNAL current_state : state_type;
     SIGNAL future_state : state_type;
 

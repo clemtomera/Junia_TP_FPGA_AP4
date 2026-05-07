@@ -16,7 +16,6 @@ ARCHITECTURE structural OF toplevel_chenillard IS
     SIGNAL rst_clk : STD_LOGIC; -- reset adapté pour le clock_divider
 
 BEGIN
-
     -- KEY(0) vaut '0' au repos, '1' quand appuyé
     -- clock_divider : reset actif bas  → on branche KEY(0) directement
     -- chenillard    : reset actif haut → on inverse KEY(0)
